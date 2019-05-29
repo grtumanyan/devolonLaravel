@@ -1,0 +1,459 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API",
+        "description": "Api",
+        "termsOfService": "",
+        "license": {
+            "name": "MIT"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost/devolon/public",
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/companies": {
+            "get": {
+                "tags": [
+                    "Companies"
+                ],
+                "summary": "Get list of companies",
+                "description": "Returns list of companies",
+                "operationId": "getCompanies",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Company"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Companies"
+                ],
+                "summary": "Create new company entry",
+                "operationId": "createCompany",
+                "parameters": [
+                    {
+                        "name": "company",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Company"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            }
+        },
+        "/companies/{id}": {
+            "get": {
+                "tags": [
+                    "Companies"
+                ],
+                "summary": "Fetch company details",
+                "operationId": "getCompany",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Company"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Companies"
+                ],
+                "summary": "Update company entry",
+                "operationId": "updateCompany",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "company",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Company"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Companies"
+                ],
+                "summary": "Remove company entry",
+                "operationId": "deleteCompany",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "default": {
+                        "description": "error",
+                        "schema": {
+                            "$ref": "#/definitions/Company"
+                        }
+                    }
+                }
+            }
+        },
+        "/companies/tree/{id}": {
+            "get": {
+                "tags": [
+                    "Companies"
+                ],
+                "summary": "Get stations tree by companyId",
+                "operationId": "getTree",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Company"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            }
+        },
+        "/stations": {
+            "get": {
+                "tags": [
+                    "Stations"
+                ],
+                "summary": "Get list of stations",
+                "description": "Returns list of stations",
+                "operationId": "getStations",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Station"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Stations"
+                ],
+                "summary": "Create new station entry",
+                "operationId": "createStation",
+                "parameters": [
+                    {
+                        "name": "station",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Station"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            }
+        },
+        "/radius": {
+            "get": {
+                "tags": [
+                    "Stations"
+                ],
+                "summary": "Get stations by given place and radius",
+                "operationId": "getByRadius",
+                "parameters": [
+                    {
+                        "name": "latitude",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "radius",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Station"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            }
+        },
+        "/stations/{id}": {
+            "get": {
+                "tags": [
+                    "Stations"
+                ],
+                "summary": "Fetch station details",
+                "operationId": "getStation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/Station"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Stations"
+                ],
+                "summary": "Update station entry",
+                "operationId": "updateStation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "station",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Station"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_token": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Stations"
+                ],
+                "summary": "Remove station entry",
+                "operationId": "deleteStation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UUID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "default": {
+                        "description": "error",
+                        "schema": {
+                            "$ref": "#/definitions/Station"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Company": {
+            "required": [
+                "name",
+                "parent"
+            ],
+            "properties": {
+                "id": {
+                    "description": "UUID",
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "parent": {
+                    "type": "string"
+                }
+            }
+        },
+        "Station": {
+            "required": [
+                "name",
+                "latitude",
+                "longitude",
+                "company"
+            ],
+            "properties": {
+                "id": {
+                    "description": "UUID",
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "string"
+                },
+                "longitude": {
+                    "type": "string"
+                },
+                "company": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "api_token": {
+            "type": "apiKey",
+            "name": "api_token",
+            "in": "query"
+        }
+    }
+}
